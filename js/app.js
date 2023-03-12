@@ -6,6 +6,7 @@ const cells = [
     "", "", ""
 ];
 let player = "playerOne";
+let dummyOneWins = false, dummyTwoWins = false;
 info.textContent = `Player 1 should start the game`;
 
 function clickHandler(e) {
@@ -35,6 +36,7 @@ function decideWinner() {
       allSquares[cell].firstChild?.classList.contains('playerOne')
     );
     if (playerOneWins) {
+      dummyOneWins = true;
       combo.forEach(
         (cell) => {
           allSquares[cell].firstChild.style.borderColor = "green";
@@ -54,6 +56,7 @@ function decideWinner() {
       allSquares[cell].firstChild?.classList.contains("playerTwo")
     );
     if (playerTwoWins) {
+      dummyTwoWins = true; 
       combo.forEach((cell) => {
         allSquares[cell].firstChild.classList.add("onPlayerTwoWin");
         // allSquares[cell].firstChild.style.setProperty(
@@ -75,7 +78,7 @@ function decideWinner() {
     if (square.hasChildNodes()) {
       count++;
     }
-    if (!playerOneWins && !playerTwoWins && count == 9) {
+    if (!dummyOneWins && !dummyTwoWins && count == 9) {
       info.textContent = "It's a Draw, Try Again!!!";
       allSquares.forEach((square) =>
         square.replaceWith(square.cloneNode(true))

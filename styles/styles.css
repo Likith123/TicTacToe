@@ -1,6 +1,8 @@
 :root{
-    --cross-pseudo-backgroundcolor: red;
+    --cross-pseudo-backgroundcolor: #b8b5b5;
     --minOfHeightWidth: calc(min(calc(0.92*60dvh), 60dvw)* calc((1/3)*3));
+    --optionSize: calc(2* min(1dvh,1dvw));
+    --xo-color: #757575;
 }
 
 body{
@@ -12,7 +14,7 @@ body{
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    background-color: darkcyan;
+    background-image: linear-gradient(to right top,#1a1a1a,#757575, rgb(211, 211, 211) );
     position: relative;
     box-sizing: border-box;
 }
@@ -24,10 +26,8 @@ header{
     max-height: 8dvh;
     padding-top: 2dvh;
     padding-bottom: 2dvh;
-    border-bottom: 1px dashed white;
     width: 100dvw;
     text-align: center;
-    background-color: rgb(34, 42, 37);
     color: lavender; 
     display: flex;
     align-items: center;
@@ -39,8 +39,8 @@ header{
     align-items: center;
     justify-content: center;
     object-fit: contain;
-    left: 8dvh;
-    background-image: linear-gradient(to right top, darkcyan, cornsilk);
+    left: 8dvw;
+    background-image: linear-gradient(to right top, rgb(224, 232, 219), rgb(224, 232, 219));
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
@@ -65,6 +65,26 @@ header{
     padding: 0;
 }
 
+.xo{
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    object-fit: contain;
+    right: 8dvw;
+    color: var(--xo-color);
+    font-size: 8dvh;
+    text-transform: uppercase;
+}
+
+.title::selection,
+.first-letter::selection,
+.remaining-title::selection,
+.remaining-name::selection,
+.xo::selection {
+    background-color: transparent;
+}
+
 main{
     position: relative;
     height: 92dvh;
@@ -80,7 +100,6 @@ main{
 #playarea{
     width: var(--minOfHeightWidth);
     height: var(--minOfHeightWidth);
-    background-color: cornsilk;
     display: flex;
     flex-wrap: wrap;
     position: relative;
@@ -88,65 +107,39 @@ main{
     border-collapse: collapse;
 }
 
-.circle{
-    content: '';
-    position: absolute;
-    width: 25%;
-    height: 25%;
-    border-radius: 50%;
-    border: 20px solid blue;
-    backdrop-filter: none;
-    top: -5%;
-    left: -20%;
-    z-index:-1;
-}
 
-.cross {
-    position: absolute;
-    height: 35%;
-    width: 35%;
-    top: 80%;
-    right: -20%;
-}
 
-.cross::before,
-.cross::after {
-    content: "";
-    position: absolute;
-    background-color: red;
-    transform: rotate(45deg);
-}
 
-.cross::before {
-    width: 30%;
-    left: 50%;
-    margin-left: -15%;
-    height: 100%;
-}
 
-.cross::after {
-    width: 100%;
-    top: 50%;
-    margin-top: -15%;
-    height: 30%;
-}
 
 .square{
     position: relative;
     width: calc(var(--minOfHeightWidth)/3);
     height: calc(var(--minOfHeightWidth)/3);
-    border: 3px solid black;
+    border: 3px solid #181818;
+    border-radius: calc(5 * min(1dvh,1dvw));
+    animation: borderAnimation 2s ease;
     box-sizing: border-box;
+    box-shadow: inset 3px 5px 5px rgb(69, 69, 69);
     display: flex;
     align-items: center;
     justify-content: center;
     backdrop-filter: blur(1.1rem);
 }
 
+@keyframes borderAnimation{
+    0%{
+        border-color: transparent;
+    }
+    100%{
+        border-color: black;
+    }
+}
+
 .playerOne{
     height: 90%;
     width: 90%;
-    border: 15px solid blue;
+    border: var(--optionSize) solid black;
     border-radius: 50%;
     box-sizing: border-box;
 }
@@ -165,17 +158,17 @@ main{
 }
 
 .playerTwo::before{
-    width: 30%;
+    width: var(--optionSize);
     left: 50%;
-    margin-left: -15%;
+    margin-left: calc(-1*var(--optionSize)/2);
     height: 100%;
 }
 
 .playerTwo::after {
     width: 100%;
     top: 50%;
-    margin-top: -15%;
-    height: 30%;
+    margin-top: calc(-1*var(--optionSize)/2);
+    height: var(--optionSize);
 }
 
 .playerOne.onPlayerOneWin{
@@ -184,7 +177,7 @@ main{
 
 @keyframes changePlayerOneColor {
     0% {
-        border-color: blue;
+        border-color: rgb(35, 35, 35);
     }
 
     50% {
@@ -192,7 +185,7 @@ main{
     }
 
     100% {
-        border-color: blue;
+        border-color: rgb(35, 35, 35);
     }
 }
 
@@ -205,7 +198,7 @@ main{
 
 @keyframes changePlayerTwoColor {
     0% {
-        background-color: red;
+        background-color: var(--cross-pseudo-backgroundcolor);
     }
 
     50% {
@@ -213,17 +206,28 @@ main{
     }
 
     100% {
-        background-color: red;
+        background-color: var(--cross-pseudo-backgroundcolor);
     }
 }
 
 #info{
-    color: lavender;
+    color: black;
     /* font-size: 1rem; */
+    font-size: calc(4 * min(1dvh,1dvw));
     z-index: 2;
 }
 
 #info::selection{
-    background-color: black;
-    color: darkcyan;
+    background-color: transparent;
+    color: white;
+}
+
+.reload{
+    margin-bottom: 8dvh;
+    border-radius: calc(1* min(1dvh, 1dvw));
+    width:calc(6 * max(1dvh, 1dvw));
+    height: calc(4 * max(1dvh, 1dvw));
+    background-image: linear-gradient(to bottom,rgb(113, 113, 113),black,rgb(113, 113, 113));
+    color: white;
+    font-size: calc(4 * min(1dvh, 1dvw));
 }

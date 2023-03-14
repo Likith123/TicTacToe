@@ -31,6 +31,7 @@ header{
     color: lavender; 
     display: flex;
     align-items: center;
+    z-index: 2;
 }
 
 .title{
@@ -44,7 +45,6 @@ header{
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
-    z-index: 2;
 }
 
 .first-letter{
@@ -76,7 +76,6 @@ header{
     color: var(--xo-color);
     font-size: 8dvh;
     text-transform: uppercase;
-    z-index: 2;
 }
 
 .title::selection,

@@ -107,11 +107,6 @@ main{
     border-collapse: collapse;
 }
 
-
-
-
-
-
 .square{
     position: relative;
     width: calc(var(--minOfHeightWidth)/3);
@@ -230,4 +225,5 @@ main{
     background-image: linear-gradient(to bottom,rgb(113, 113, 113),black,rgb(113, 113, 113));
     color: white;
     font-size: calc(4 * min(1dvh, 1dvw));
+    z-index: 2;
 }

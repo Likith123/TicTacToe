@@ -120,7 +120,8 @@ main{
     border-radius: calc(5 * min(1dvh,1dvw));
     animation: borderAnimation 2s ease;
     box-sizing: border-box;
-    box-shadow: inset 3px 5px 5px rgb(69, 69, 69);
+    box-shadow: inset 3px 5px 5px rgb(69, 69, 69),
+                6px 10px 5px rgb(69, 69, 69);
     display: flex;
     align-items: center;
     justify-content: center;

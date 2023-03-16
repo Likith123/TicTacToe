@@ -78,24 +78,28 @@ header{
     text-transform: uppercase;
 }
 
-.title::selection,
-.first-letter::selection,
-.remaining-title::selection,
-.remaining-name::selection,
-.xo::selection {
+header div::selection {
     background-color: transparent;
 }
 
 main{
     position: relative;
-    height: 92dvh;
+    height: 88dvh;
     width: 100dvw;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: column;
+    top: 6dvh;
+    margin: 0;
+    padding: 0;
+}
+
+.main{
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    top: 4dvh;
-    bottom: 4dvh;
 }
 
 #playarea{
@@ -223,7 +227,8 @@ main{
 }
 
 .reload{
-    margin-bottom: 8dvh;
+    padding: 0;
+    margin: 0;
     border-radius: calc(1* min(1dvh, 1dvw));
     width:calc(6 * max(1dvh, 1dvw));
     height: calc(4 * max(1dvh, 1dvw));
